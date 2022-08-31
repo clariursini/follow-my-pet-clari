@@ -25,8 +25,9 @@ puts "Deleting users"
 User.destroy_all
 
 puts "Creating users"
-user1 = User.create!(email: "clariursini@gmail.com", password: "123456", type_of_user: "Veterinary", name: "Clinic Veterinary Boris", doctors: "Boris, Sebastien and bro", phone: "+54659856523", location: "Paris", longitude: 2.3488, latitude: 48.85341)
+user1 = User.create!(email: "clariursini@gmail.com", password: "123456", type_of_user: "Veterinary", name: "Clinic Veterinary Boris", doctors: "Boris, Sebastien and bro", phone: "+54659856523", location: "Paris", longitude: 2.3488, latitude: 48.85341, speciality: "Bath, Pet Shop")
 user2 = User.create!(email: "valenursini@gmail.com", password: "123456", type_of_user: "Pet Owner", name: "Sofi", phone: "+5465944443", location: "Mendoza")
+user2 = User.create!(email: "veterinary1@gmail.com", password: "123456", type_of_user: "Veterinary", name: "La One Veterinary", phone: "+5465944443", location: "Pilar", speciality: "Bath, Radiology, Clinic")
 puts "Done"
 
 puts "Creating species types"

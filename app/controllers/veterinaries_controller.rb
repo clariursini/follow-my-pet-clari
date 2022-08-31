@@ -1,11 +1,8 @@
 class VeterinariesController < ApplicationController
   def index
     if params[:query].present? # si la query esta presente
-      if User.search_by_location(params[:query]).size.positive? # Si la query encuentra algo
-        @veterinaries = User.where(type_of_user: "Veterinary")
-        @veterinaries.search_by_location(params[:query])
-      else
-        "No results found" # Si no encuentra resultados
+      if User.search_by_location(params[:query]).size > 0 # Si la query encuentra algo
+        @veterinaries = User.where(type_of_user: "Veterinary").search_by_location(params[:query])
       end
     else
       @veterinaries = User.where(type_of_user: "Veterinary") # Si no buscamos nada que traiga todas
@@ -14,5 +11,6 @@ class VeterinariesController < ApplicationController
 
   def show
     @veterinary = User.find(params[:id])
+    @appointment = Appointment.new
   end
 end

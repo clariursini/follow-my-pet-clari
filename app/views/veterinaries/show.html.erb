@@ -1,0 +1,47 @@
+<% if @veterinary.photo.exist? %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @veterinary.photo.key %>);">
+<% else %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1630438994394-3deff7a591bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80);">
+<% end %>
+
+    <div class="container">
+        <h1><%= @veterinary.name %></h1>
+    </div>
+  </div>
+
+  <div class="container">
+      <div class="container">
+        <div class="container-details">
+          <% if @veterinary.speciality != nil %>
+          <p>Specialities: <%= @veterinary.speciality %></p>
+          <% else %>
+          <p>Specialities: Undefined</p>
+          <% end %>
+          <p>Location: <%= @veterinary.location %></p>
+          <p>Phone: <%= @veterinary.phone %></p>
+          <p>Doctors: <%= @veterinary.doctors %></p>
+        </div>
+
+        <div class="actions">
+          <%# <%= link_to "Book an appointment", new_pet_appointment_path(pet_id: @user.pets.last), class:"btn btn-primary" %>
+          <%= link_to "Chat", root_path, class:"btn btn-primary" %>
+        </div>
+
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-10 m-auto">
+            <div class="flat-form form-container">
+                <div class="mt-3">
+                    <%= simple_form_for @appointment do |r| %>
+                    <%= r.input :date, as: :date %>
+                    <%= r.button :submit, class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>

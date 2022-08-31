@@ -1,0 +1,59 @@
+<div class="container">
+  <p>Search your vet</p>
+  <div class="form-group mt-3 mb-3 col-12 formulario">
+
+    <%= form_with url: veterinaries_path, method: :get, class: "d-flex" do %>
+      <div class="input-group">
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Location" %>
+      </div>
+      <div class="input-group pl-3">
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @veterinaries != nil %>
+
+  <div class="cards-container">
+    <div class="cards">
+      <% @veterinaries.each do |vet| %>
+
+      <div class="card-trip">
+        <% if vet.photo != nil %>
+          <%= cl_image_tag vet.photo.key  %>
+        <% else %>
+          <img src="https://images.unsplash.com/photo-1599443015574-be5fe8a05783?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
+        <% end %>
+
+        <div class="card-trip-infos">
+          <div class="card-content">
+            <div class="card-section">
+              <h2><%= vet.name %></h2>
+            </div>
+            <div class="reservation-content">
+              <% if vet.speciality != nil %>
+              <p>Specialities: <%= vet.speciality %></p>
+              <% else %>
+              <p>Specialities: Undefined</p>
+              <% end %>
+              <p>Location: <%= vet.location %></p>
+              <p>Phone: <%= vet.phone %></p>
+              <p>Doctors: <%= vet.doctors %></p>
+            </div>
+            <div class="reservation-actions">
+              <%= link_to "Details", veterinary_path(vet), class:"ms-3 text-success"  %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    <% else %>
+      <p>No results found</p>
+    <% end %>
+    </div>
+
+    <div id="map" style="width: 100%; height: 600px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>

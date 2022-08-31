@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :appointments, except: [:new, :create]
   get 'my_appointments', to: 'appointments#my_appointments', as: 'my_appointments'
-  get 'my_pattients', to: 'appointments#my_pattients', as: 'my_pattients'
+  get 'my_patients', to: 'appointments#my_patients', as: 'my_patients'
 
   resources :veterinaries, only: [:show, :index]
 
