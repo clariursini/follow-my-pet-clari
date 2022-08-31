@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   resources :pets do
     resources :vaccinations, except: [:show, :destroy]
   end
+  resources :pets do
+    resources :veterinaries, only: [:show, :index]
+  end
 
-  resources :appointments, except: [:new, :create]
+  resources :appointments, except: [:new, :create, :show]
   get 'my_appointments', to: 'appointments#my_appointments', as: 'my_appointments'
   get 'my_patients', to: 'appointments#my_patients', as: 'my_patients'
 
-  resources :veterinaries, only: [:show, :index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

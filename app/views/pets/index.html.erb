@@ -1,2 +1,2 @@
 <h1>My pets</h1>
-<%= @pets.where(user_id: current_user.id) %>
+<%= link_to pet_path(@pets) %>
